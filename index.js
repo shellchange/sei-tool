@@ -42,15 +42,18 @@ async function main() {
   const signingCosmWasmClient = await getSigningCosmWasmClient(RPC_URL, wallet);
 
   for (let i = 0; i < 1000; i++) {
-    const response = await signingCosmWasmClient.sendTokens(
-      accounts[0].address,
-      accounts[0].address,
-      [{ amount: "1", denom: "usei" }],
-      fee,
-      msg_base64
-    );
-
-    console.log(response.transactionHash);
+    try{
+      const response = await signingCosmWasmClient.sendTokens(
+        accounts[0].address,
+        accounts[0].address,
+        [{ amount: "1", denom: "usei" }],
+        fee,
+        msg_base64
+      );
+      console.log(response.transactionHash);
+    }catch(err){
+		  console.log('发生错误，第' + i + '次失败，继续下一次mint，错误信息: ' + err)
+	  }	
   }
 }
 
