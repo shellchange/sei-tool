@@ -67,7 +67,7 @@ async function main() {
       await sleep(1500);//延迟1.5秒，增加mint成功概率
     }catch (e){
       failNum++;
-      console.log("***************第 " + failNum + " 次出现错误，时间：" + new Date() + "错误原因：" + e);
+      console.log("钱包地址：" + address +"*********第 " + failNum + " 次出现错误，时间：" + new Date() + "错误原因：" + e);
       await sleep(3000);//延迟3秒后再次发送
       continue;
     }
